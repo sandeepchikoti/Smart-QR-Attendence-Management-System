@@ -1,0 +1,154 @@
+/* Custom Design System & CSS Variables */
+:root {
+  --font-sans: 'Inter', system-ui, -apple-system, sans-serif;
+  
+  /* Color Palette - Sleek HSL Dark-Mode-leaning system */
+  --bg-primary: #0b0f19;
+  --bg-secondary: #161c2a;
+  --text-primary: #f8fafc;
+  --text-secondary: #94a3b8;
+  
+  --primary-color: #6366f1; /* Indigo */
+  --primary-hover: #4f46e5;
+  --accent-color: #06b6d4;  /* Cyan */
+  
+  --success: #10b981;
+  --warning: #f59e0b;
+  --danger: #ef4444;
+  --info: #3b82f6;
+  
+  /* Glassmorphism styling */
+  --glass-bg: rgba(22, 28, 42, 0.65);
+  --glass-border: rgba(255, 255, 255, 0.08);
+  --glass-shadow: rgba(0, 0, 0, 0.35);
+  
+  font-family: var(--font-sans);
+  background-color: var(--bg-primary);
+  color: var(--text-primary);
+  min-height: 100vh;
+  margin: 0;
+  overflow-x: hidden;
+}
+
+body {
+  margin: 0;
+  padding: 0;
+  background-color: var(--bg-primary);
+  color: var(--text-primary);
+}
+
+/* Glassmorphism Card template */
+.glass-card {
+  background: var(--glass-bg);
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+  border: 1px solid var(--glass-border);
+  box-shadow: 0 8px 32px 0 var(--glass-shadow);
+  border-radius: 16px;
+  color: var(--text-primary);
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.glass-card:hover {
+  box-shadow: 0 12px 40px 0 rgba(99, 102, 241, 0.15);
+}
+
+/* Custom interactive glowing button */
+.btn-glow {
+  background: linear-gradient(135deg, var(--primary-color) 0%, var(--accent-color) 100%);
+  border: none;
+  color: white;
+  font-weight: 600;
+  border-radius: 8px;
+  padding: 10px 24px;
+  transition: all 0.3s ease;
+  box-shadow: 0 4px 14px 0 rgba(99, 102, 241, 0.4);
+}
+
+.btn-glow:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 6px 20px 0 rgba(99, 102, 241, 0.6);
+  background: linear-gradient(135deg, var(--primary-hover) 0%, var(--primary-color) 100%);
+}
+
+.btn-glow:active {
+  transform: translateY(0);
+}
+
+/* QR Scanner beam and camera preview frame */
+.scanner-frame {
+  position: relative;
+  overflow: hidden;
+  border-radius: 12px;
+  border: 3px solid var(--accent-color);
+  box-shadow: 0 0 20px rgba(6, 182, 212, 0.3);
+  max-width: 350px;
+  margin: 0 auto;
+  aspect-ratio: 1;
+}
+
+.scanner-beam {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 4px;
+  background-color: var(--accent-color);
+  box-shadow: 0 0 12px var(--accent-color);
+  animation: scan 2s linear infinite;
+}
+
+@keyframes scan {
+  0% { top: 0%; }
+  50% { top: 100%; }
+  100% { top: 0%; }
+}
+
+/* Micro-animations */
+.fade-in-up {
+  animation: fadeInUp 0.5s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+}
+
+@keyframes fadeInUp {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* Rotating QR border pulse */
+.qr-pulse-container {
+  padding: 16px;
+  border-radius: 12px;
+  background: white;
+  border: 4px dashed var(--primary-color);
+  animation: borderPulse 4s linear infinite;
+  display: inline-block;
+}
+
+@keyframes borderPulse {
+  0% { border-color: var(--primary-color); }
+  50% { border-color: var(--accent-color); }
+  100% { border-color: var(--primary-color); }
+}
+
+/* Custom Input override */
+.form-input-custom {
+  background-color: rgba(255, 255, 255, 0.05);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  color: white !important;
+  border-radius: 8px;
+  padding: 12px 16px;
+  transition: all 0.2s ease;
+}
+
+.form-input-custom:focus {
+  background-color: rgba(255, 255, 255, 0.08);
+  border-color: var(--primary-color);
+  box-shadow: 0 0 0 3px rgba(99, 102, 241, 0.25);
+  outline: none;
+}

@@ -1,0 +1,36 @@
+server:
+  port: 8080
+  error:
+    include-message: always
+
+spring:
+  datasource:
+    url: ${SPRING_DATASOURCE_URL:jdbc:mysql://localhost:3306/qr_attendance?createDatabaseIfNotExist=true&useSSL=false&allowPublicKeyRetrieval=true&serverTimezone=UTC}
+    username: ${SPRING_DATASOURCE_USERNAME:root}
+    password: ${SPRING_DATASOURCE_PASSWORD:password}
+    driver-class-name: com.mysql.cj.jdbc.Driver
+  jpa:
+    hibernate:
+      ddl-auto: update
+    show-sql: true
+    properties:
+      hibernate:
+        format_sql: true
+        dialect: org.hibernate.dialect.MySQLDialect
+    open-in-view: false
+
+# Custom Security Application Properties
+app:
+  jwt:
+    # 256-bit secret key in Hex (HMAC-SHA256)
+    secret: dGhpcy1pcy1hLXNlY3VyZS0yNTYtYml0LXNlY3JldC1rZXktZm9yLXFyaS1hdHRlbmRhbmNlLXN5c3RlbS1kZXY=
+    # Access token expiration: 15 minutes (in milliseconds)
+    expiration-ms: 900000
+    # Refresh token expiration: 7 days (in milliseconds)
+    refresh-expiration-ms: 604800000
+
+logging:
+  level:
+    org.springframework.security: INFO
+    org.hibernate.SQL: DEBUG
+    org.hibernate.orm.jdbc.bind: TRACE
